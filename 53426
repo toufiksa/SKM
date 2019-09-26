@@ -1,0 +1,26 @@
+public class Main
+{
+	public static void main(String[] args)
+	{
+    
+   BankAccount toufik=new BankAccount();
+   BankAccount khalifa=new BankAccount();
+      System.out.println("  انشاء حساب جديد \n ");
+    toufik.addBankAccount();
+      System.out.println("  ايداع اموال في الحساب \n ");
+    toufik.Despoit();
+      
+    System.out.println(" انشاء حساب جديد اخر \n ");
+    khalifa.addBankAccount();
+    System.out.println(" ارسال اموال الى حساب جديد\n ");  
+    toufik.send(khalifa);
+      System.out.println( "عرض التحويلات خاصة بحساب الاول\n ");     
+    toufik.showlasttransform();
+      System.out.println("عرض معلومات الحساب الاول\n ");
+    toufik.showMyinfo();
+    System.out.println(" عرض معلومات حساب ثاني\n ");
+    khalifa.showMyinfo();
+      System.out.println("  عرض تحويلات حساب الثاني\n ");
+    khalifa.showlasttransform();
+   }
+}

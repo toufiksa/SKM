@@ -1,0 +1,161 @@
+import java.util.Date;
+import java.util.Scanner;
+import java.io.Serializable;
+public class BankAccount implements Serializable
+{ 
+    
+    int accountNubmer=0;
+    //storing account name
+    String accountName;
+    // storing blance
+    double blance;
+    //storing blance that user add
+    transient  double blanceyouadd;
+    // storing blance that user withdrow
+    transient  double blancyouwithdrow;
+    // disply date
+    transient Date date;
+    // display date of last despoit
+    transient Date DateoflastTransformofdspoit;
+    // display date of last withdrow
+    transient Date DateoflastTransformofwithdrow;
+    
+    Scanner enter=new Scanner(System.in);
+  //  saveSettinges x=new saveSettinges();
+    // add bank account
+    protected void addBankAccount() 
+    {  
+       if (accountNubmer == 0)
+        {
+            System.out.println("please enter a number to your account : ");
+
+            this.accountNubmer = enter.nextInt();
+            
+            
+            
+
+            System.out.println(" please enter your name : ");
+            accountName = enter.next();
+
+            System.out.println(" conrgratulation you add bank account ! ");
+        }
+        else
+           System.out.println("you alerdy have an account number");
+
+
+    }
+
+
+
+    //user info
+
+    protected void showMyinfo()
+    {
+        if (accountNubmer == 0)
+            System.out.println("add account first");
+        else
+        {
+            System.out.println("your account number : " +accountNubmer);
+
+            System.out.println("your name : " + accountName);
+
+            System.out.println("your blance : " + blance);
+
+        }
+    }
+    
+  
+    //send money
+    protected void send(BankAccount x)
+    {
+
+        System.out.println("enter how much u want send : ");
+        double d=enter.nextDouble();
+        if (d <= blance)
+        {
+            blance -= d;
+            x.blance +=d;
+            blancyouwithdrow = d;
+            
+        }
+        else
+            System.out.println("withdrow filed : the amonut must be more then or equles blance");
+        DateoflastTransformofwithdrow = new Date();
+        date = new Date();
+        
+        
+    }
+
+    //despoit money
+    protected void Despoit()
+    {
+        if (accountNubmer == 0)
+            System.out.println("add account first");
+        else
+        {
+            System.out.println("enter how much you wante despoit : ");
+            double b=enter.nextDouble();
+            if (b > 0.0)
+            {
+
+                blance += b;
+                blanceyouadd = b;
+            }
+            else
+                System.out.println("Despoit filed :the despoit must be more then 0");
+            DateoflastTransformofdspoit = new Date();
+            date = new Date();
+        }
+    }
+    // withdrow money
+    protected void withdrow()
+    {
+        if (accountNubmer == 0)
+            System.out.println("add account first");
+        else
+        {
+            System.out.println("enter how much you want withdrow : ");
+            double d=enter.nextDouble();
+            if (d <= blance)
+            {
+                blance -= d;
+                blancyouwithdrow = d;
+            }
+            else
+                System.out.println("withdrow filed : the amonut must be more then or equles blance");
+            DateoflastTransformofwithdrow = new Date();
+            date = new Date();
+        }
+    }
+    // display blance of the user
+    protected void getblance()
+    {   if (accountNubmer == 0)
+            System.out.println("add account first");
+        else
+        {
+            date = new Date();
+            System.out.println(" your blance is : " + blance  + " in " + "(" + date + ")");
+        }
+    }
+    //display last transform
+
+
+    protected void showlasttransform()
+    {
+        if (accountNubmer == 0)
+            System.out.println("add account first");
+        else
+        {
+            if (date == null)
+                System.out.println("you did not do any transform");
+            else 
+            {
+                System.out.println("last trnasformes of your account MR  " + accountName + accountNubmer + " is  ");          
+                System.out.println("despoit in " + DateoflastTransformofdspoit + "(" + blanceyouadd + ")" + "DZ");    
+                System.out.println("withdrow in " + DateoflastTransformofwithdrow + "(" + blancyouwithdrow + ")" + "DZ");
+                  
+            }
+        }
+    }
+     
+}
